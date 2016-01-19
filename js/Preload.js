@@ -11,14 +11,17 @@ PlatformerGame.Preload.prototype = {
 
     this.load.setPreloadSprite(this.preloadBar);
 
-    //load game assets
-    // this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
-    this.game.load.image('sky', 'assets/sky.png');
-    this.game.load.image('ground', 'assets/platform.png');
-    this.game.load.image('star', 'assets/star.png');
-    this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    this.game.load.spritesheet('logo-tiles', 'assets/images/logo-tiles.png', 17, 16);
+    this.game.load.spritesheet('tiles', 'assets/images/bitslap-minild62.png', 16, 16);
+    this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.image('sky', 'assets/images/sky_new.png');
+    this.game.load.image('star', 'assets/images/star.png');
+    this.game.load.spritesheet('dude', 'assets/images/dude.png', 32, 48);
+
+    this.game.load.audio('music', 'assets/audio/music.ogg');
+
   },
   create: function() {
-    this.state.start('Game');
+    this.state.start('Logo');
   }
 };
