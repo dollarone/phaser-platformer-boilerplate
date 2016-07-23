@@ -4,10 +4,14 @@ var PlatformerGame = PlatformerGame || {};
 PlatformerGame.Logo = function(){};
 
 PlatformerGame.Logo.prototype = {
+  init: function(colour, timeout) { 
+    this.colour = colour;
+    this.timeout = timeout;
+  },
   create: function() {
 
     //Change the background colour
-    this.game.stage.backgroundColor = "#333";
+    this.game.stage.backgroundColor = this.colour;
 
     this.platforms = this.game.add.group();
 
@@ -164,7 +168,7 @@ PlatformerGame.Logo.prototype = {
 
     this.createTile(logo_top_x+tile_space*1, logo_top_y+tile_space*9, 2);
 
-    this.startLogoAnimationTimer = 1000; 
+    this.startTime = this.game.time.now; 
   
     this.game.input.keyboard.addCallbacks(this, this.skip, null, null);
     this.pressed = false;
@@ -174,16 +178,17 @@ PlatformerGame.Logo.prototype = {
   skip : function() {
     if (!this.pressed) {
         this.pressed = true;
-        this.state.start('Game');
+        this.state.start('GameJam', true, false, this.colour, this.timeout);
     }
   },
 
   update: function() {
 
-    this.startLogoAnimationTimer--;
-    if (this.startLogoAnimationTimer < 0 && !this.pressed) {
+    if (this.startTime < this.game.time.now - (this.timeout*1000) && !this.pressed) {
         this.pressed = true;
-        this.state.start('Game');
+        var colour = "333";
+        var timeout = 2;
+        this.state.start('GameJam', true, false, this.colour, this.timeout);
     }
   },
 

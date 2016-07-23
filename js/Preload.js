@@ -16,12 +16,15 @@ PlatformerGame.Preload.prototype = {
     this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
     this.game.load.image('sky', 'assets/images/sky_new.png');
     this.game.load.image('star', 'assets/images/star.png');
-    this.game.load.spritesheet('dude', 'assets/images/dude.png', 32, 48);
+    this.game.load.image('gamejam', 'assets/images/onehourgamejamlogo.png');
 
+    this.game.load.audio('splash', 'assets/audio/onehourgamejamsplash.ogg');
     this.game.load.audio('music', 'assets/audio/music.ogg');
 
   },
   create: function() {
-    this.state.start('Logo');
+    var colour = "eee";
+    var timeout = 2;
+    this.state.start('Logo', true, false, colour, timeout);
   }
 };
